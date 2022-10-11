@@ -1,3 +1,6 @@
+<p><a href="index.php">Index Page</a></p>
+<hr/>
+
 <?php
 
 if(count($_POST)>0){

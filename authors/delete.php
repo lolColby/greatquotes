@@ -14,20 +14,9 @@ while ($line=fgets($fh)) {
     $line_counter++;
 }
 fclose($fh);
-
 file_put_contents('../data/authors.csv', $new_file_content);
+echo "Author successfully deleted.";
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
+<p><a href="index.php">Back to Index</a>

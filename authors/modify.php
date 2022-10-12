@@ -44,6 +44,5 @@ else {
 ?>
 
 <p><a href="index.php">Index Page</a></p>
-<p><a href="delete.php?index='.$_GET['index'].'">delete</a></p>
 
 

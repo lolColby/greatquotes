@@ -31,5 +31,5 @@ if(count($_POST)>0){
 
 <form method="POST">
     <input type="text" name="name" /> <br />
-    <button type="submit"> Add Author </button>
+    <button type="submit"> Add Quote </button>
 </form>

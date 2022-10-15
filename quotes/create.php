@@ -1,30 +1,7 @@
 <?php
-/*print_r($_POST);
-die;*/
-//check if quote exists already
-if(count($_POST)>0){
-    
-    $error='';
-    if(file_exists('../data/quotes.csv')) {
-    $fh=fopen('../data/quotes.csv','r');
-    while ($line=fgets($fh)) {
-        if($_POST['quote']==trim($line)) {
-            $error='The quote already exists';
-        }
-    }
-    fclose($fh);
-}
-//add quote to database
-    if(strlen($error>0)) echo $error;
-    else {
-        $fh=fopen('../data/quotes.csv','a');
-        fputs($fh,$_POST['name'].';'.$_POST['quote'].PHP_EOL);
-        fclose($fh);
-        echo 'Thanks for adding '.$_POST['quote'].' to our website!';
-    }
-};
+require_once('../csv_util.php');
+addQuote();
 ?>
-
 
 
 <!-- form for adding quote -->

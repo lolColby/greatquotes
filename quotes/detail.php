@@ -4,26 +4,6 @@
 <hr/>
 
 <?php
-//display quote
-$line_counter=0;
-$fh=fopen("../data/quotes.csv", "r");
-while ($line=fgets($fh)) {
-    if($line_counter==$_GET['index']) {
-        list($id,$quote)=explode(";", $line);
-        echo '<h1>'.$quote.'</h1>';
-    }
-    $line_counter++;
-
-}
-//display author
-fclose($fh);
-$line_counter=0;
-$fh=fopen("../data/authors.csv", "r");
-while ($line=fgets($fh)) {
-    if($line_counter==$_GET['index']) {
-        echo $line;
-    }
-    $line_counter++;
-
-}
-fclose($fh);
+require_once('../csv_util.php');
+displayQuote();
+displayAuthor();

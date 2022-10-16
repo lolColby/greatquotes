@@ -8,7 +8,7 @@ if(!isset($_SESSION['logged']) || $_SESSION['logged']!=true) {
 ?>
 <html>
     <body>
-        <h1> Welcome, <?= $_SESSION['email'] ?>!</h1>
+        <h1> Welcome to great quotes, <?= $_SESSION['email'] ?>!</h1>
         <a href="signout.php">Sign out</a><br />
 
         <?php

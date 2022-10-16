@@ -1,4 +1,4 @@
-<p><a href="index.php">Index Page</a></p>
+<p><a href="../auth/private.php">Index Page</a></p>
 <hr/>
 
 <?php

@@ -8,7 +8,11 @@ function readIntoArray () {
 
 //display list of quotes and their authors
 
-function displayAllQuotes() {
+function displayAllQuotes($path) {
+    ?>
+    <a href="../quotes/create.php">Create New Quote</a><br />
+    <a href="../authors/create.php">Add new author</a><br />
+    <?php
     $author = file('../data/authors.csv', FILE_IGNORE_NEW_LINES);
     $fh=fopen('../data/quotes.csv','r');
     $index=0;
@@ -16,7 +20,7 @@ function displayAllQuotes() {
         if(strlen(trim($line))>0) {
             list($id,$quote)=explode(";", $line);
             echo'<h1><p>'.$quote.'  -'.$author[$id].'</p>
-            (<a href="detail.php?index='.$id.'">details</a>)
+            (<a href="'.$path.'detail.php?index='.$id.'">details</a>)
             </h1>';
             $index++;
         }
@@ -121,7 +125,7 @@ function deleteQuote() {
         file_put_contents('../data/quotes.csv', $new_file_content);
         echo "Quote successfully deleted.";
         ?>
-        <p><a href="index.php">Back to Index</a>
+        <p><a href="../auth/private.php">Back to Index</a>
         <?php
         die();
     }
@@ -155,3 +159,19 @@ function displayAuthor(){
     }
     fclose($fh);
     }
+
+    function displayAllQuotesPublic() {
+        $author = file('../data/authors.csv', FILE_IGNORE_NEW_LINES);
+        $fh=fopen('../data/quotes.csv','r');
+        $index=0;
+        while ($line=fgets($fh)) {
+            if(strlen(trim($line))>0) {
+                list($id,$quote)=explode(";", $line);
+                echo'<h1><p>'.$quote.'  -'.$author[$id].'</p>
+                (<a href="../quotes/detailPublic.php?index='.$id.'">details</a>)
+                </h1>';
+                $index++;
+            }
+    }
+    }
+    

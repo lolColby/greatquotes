@@ -27,4 +27,4 @@ addQuote();
 
 
 
-<p><a href="index.php">Back to Index</a>
+<p><a href="../auth/private.php">Index Page</a></p>

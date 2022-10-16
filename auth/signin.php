@@ -1,12 +1,15 @@
 <?php
 session_start();
+require_once('auth.php');
+is_logged();
+signIn();
 // if the user is alreay signed in, redirect them to the members_page.php page
 
-if(isset($_SESSION['logged']) && $_SESSION['logged']==true) header('location: private.php');
+//if(isset($_SESSION['logged']) && $_SESSION['logged']==true) header('location: private.php');
 
 // use the following guidelines to create the function in auth.php
 //instead of using "die", return a message that can be printed in the HTML page
-if(count($_POST)>0){
+/*if(count($_POST)>0){
 
 	// 1. check if email and password have been submitted
 	if(!isset($_POST['email']) || !isset($_POST['password'])) die('please enter your email and password');
@@ -17,7 +20,7 @@ if(count($_POST)>0){
 	// 3. check if the password is well formatted
 	/*if(strlen($_POST['password'])<8 || strlen($_POST['password'])>16 || 
 	!preg_match("/[\'^£$%&*()}{@#~?><>,|=_+!-]/", $_POST['password'])) die('Incorrect password format');
-*/
+
 	// 4. check if the file containing banned users exists
 	if(file_exists('../data/banned.csv.php')) {
 		// 5. check if the email has been banned
@@ -39,12 +42,6 @@ if(count($_POST)>0){
 		}
 		fclose($fh);
 	}
-
-
-
-
-
-
 	$fh=fopen('../data/users.csv','r');
 	while($line=fgets($fh)){
 		$line=trim($line);
@@ -54,6 +51,7 @@ if(count($_POST)>0){
 			if(password_verify($_POST['password'],$line[1])){
 				// 9. store session information
 				$_SESSION['logged']=true;
+				$_SESSION['email']=$_POST['email'];
 				// 10. redirect the user to the members_page.php page
 				header('location: private.php');
 			}else die('Not today: incorrect password');

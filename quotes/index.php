@@ -2,4 +2,4 @@
 
 <?php
 require_once('../csv_util.php');
-displayAllQuotes();
+displayAllQuotes("");

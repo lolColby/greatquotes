@@ -62,9 +62,9 @@ function signin(){
 	
 		// 2. check if the email is well formatted
 		if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) die('Your email is invalid');
-	
+	/*
 		// 3. check if the password is well formatted
-		/*if(strlen($_POST['password'])<8 || strlen($_POST['password'])>16 || 
+		if(strlen($_POST['password'])<8 || strlen($_POST['password'])>16 || 
 		!preg_match("/[\'^£$%&*()}{@#~?><>,|=_+!-]/", $_POST['password'])) die('Incorrect password format');
 	
 		// 4. check if the file containing banned users exists
@@ -73,22 +73,13 @@ function signin(){
 			$fh=fopen('../data/banned.csv.php', 'r');
 			$index=0;
 			while ($line=fgets($fh)) {
-				if ($line=$_POST['email']) die('This email has been banned');
+				if (!$line=$_POST['email']) die('This email has been banned');
 			}
 			fclose($fh);
 		}
-	
+	*/
 		// 6. check if the file containing users exists
 		if(file_exists('../data/users.csv')) {
-			// 7. check if the email is registered
-			$fh=fopen('../data/users.csv', 'r');
-			$index=0;
-			while ($line=fgets($fh)) {
-				if ($line=$_POST['email']) die('You need to create an account');
-			}
-			fclose($fh);
-		}
-		*/
 		$fh=fopen('../data/users.csv','r');
 		while($line=fgets($fh)){
 			$line=trim($line);
@@ -101,16 +92,28 @@ function signin(){
 					$_SESSION['email']=$_POST['email'];
 					// 10. redirect the user to the members_page.php page
 					header('location: private.php');
-				}else die('Not today: incorrect password');
+				
+				
+				}else
+				echo 'Not today: incorrect password';
+				?>
+				<br /><a href="signin.php">Sign In</a><br />
+				<?php
+				 die();
 			}
 		}
 		fclose($fh);
-		die('Not today: you must create an account first');
+		// 7. check if the email is registered
+		echo 'Not today: you must create an account first';
+		?>
+		<br /><a href="signup.php">Sign Up</a><br />
+		<?php
+		die();
 	}
 		
 		
 }
-
+}
 function signout(){
 	// if the user is not logged in, redirect them to the public page
 	if(!isset($_SESSION['logged'])) header('location: public.php');
